@@ -1,0 +1,1 @@
+export interface Task_i { id: number; text: string; day: string; reminder: boolean; }
