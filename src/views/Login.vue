@@ -4,17 +4,32 @@
       <form @submit.prevent="login">
         <input v-model="email" type="email" placeholder="Email" required><br>
         <input v-model="password" type="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+        <button @click="accedi" type="submit">Login</button>
       </form>
     </div>
   </template>
   
+
   <script>
   import { ref } from 'vue';
   import { userStore } from '@/stores/userStore'; // Uso uno Store specifico per gli utenti
+  import { Button } from '@/components/Button.vue';
   
   export default {
     name: 'Login',
+
+    components: {
+        Button
+    },
+
+    methods: {
+      accedi() {
+        console.log('clickclickclick');
+        const store = userStore();
+        store.login();
+        this.$router.push('/home')
+      }
+    },
 
     setup() {
       const email = ref('');

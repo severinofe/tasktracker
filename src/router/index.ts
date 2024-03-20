@@ -10,7 +10,7 @@ import { userStore } from '@/stores/userStore';
 
 const routes = [
     {
-        path: '/',
+        path: '/home',
         name: 'Home',
         component: Home,
         meta: { requiresAuth: true }

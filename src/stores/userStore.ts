@@ -1,18 +1,21 @@
 import { defineStore } from 'pinia';
 
 export const userStore = defineStore({
-  id: 'auth',
+  id: 'userStore',
   state: () => ({
     loggato: false,
    
   }),
   actions: {
-    login(email : string, password : string) {
-      // Logica di login mancante ancora
-      if (email && password) {
+    login() {
+
+
+      console.log('sei nello userStore', this.loggato);
+      
+        
         this.loggato = true;
     
-      }
+   //   }
     },
     logout() {
       this.loggato = false;

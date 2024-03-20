@@ -13,18 +13,12 @@
   import AddTask from '../components/AddTask'
   export default {
     name: 'Home',
-   /* props: {
-      showAddTask: Boolean,
-    },*/
+ 
     components: {
       Tasks,
       AddTask,
     },
-   /* data() {
-      return {
-       // tasks: [],
-      }
-    },*/
+   
     computed:
       {
 

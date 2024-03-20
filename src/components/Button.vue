@@ -13,12 +13,10 @@
         },
 
         methods: {
-            onClick() {
-                this.$emit('btn-click')
-            },
+            
         },
 
-        emits: ['btn-click']
+       
 
     }
     
