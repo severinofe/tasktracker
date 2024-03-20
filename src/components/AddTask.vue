@@ -95,4 +95,4 @@ export default {
   flex: 2;
   height: 20px;
 }
-</style>@/stores/tasksStore
+</style>
