@@ -1,19 +1,23 @@
 <template>
-    <div>
-      <h1>Login</h1>
-      <form @submit.prevent="login">
-        <input v-model="email" type="email" placeholder="Email" required><br>
+  <div class="add-form">
+    <h1>Login</h1>
+    <form>
+      <div class="form-control">
+        <input v-model="email" type="email" placeholder="Email" required>
+      </div>
+      <div class="form-control">
         <input v-model="password" type="password" placeholder="Password" required>
-        <button @click="accedi" type="submit">Login</button>
-      </form>
-    </div>
-  </template>
+      </div>
+      <Button @btn-click="accedi" type="submit" :text="'Login'" class="btn btn-block"></Button>
+    </form>
+  </div>
+</template>
   
 
   <script>
   import { ref } from 'vue';
   import { userStore } from '@/stores/userStore'; // Uso uno Store specifico per gli utenti
-  import { Button } from '@/components/Button.vue';
+  import  Button  from '@/components/Button.vue';
   
   export default {
     name: 'Login',
@@ -49,13 +53,21 @@
   }
   </script>
 
-<style>
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.form-control input {
+  width: 100%;
+  height: 40px;
+  margin: 5px;
+  padding: 3px 7px;
+  font-size: 17px;
 }
 
 body {

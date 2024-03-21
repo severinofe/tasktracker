@@ -9,6 +9,11 @@ import { userStore } from '@/stores/userStore';
 
 
 const routes = [
+
+    {
+        path: '/',
+        redirect: '/login' // Reindirizza il percorso base alla pagina di login
+    },
     {
         path: '/home',
         name: 'Home',
