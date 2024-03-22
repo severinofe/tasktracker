@@ -7,7 +7,7 @@
     />
   </template>
   
-  <script>
+  <script lang="ts">
   import { tasksStore } from '@/stores/tasksStore.ts';
   import Tasks from '../components/Tasks'
   import AddTask from '../components/AddTask'
