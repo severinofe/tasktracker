@@ -1,8 +1,8 @@
 <template>
-<button v-on:click="onClick()" :style="{background: color}" class="btn">{{text}}</button>
+<button v-on:click="onClick" :style="{background: color}" class="btn">{{text}}</button>
 </template>
 
-<script>
+<script lang="ts">
     import { tasksStore } from '@/stores/tasksStore.ts';
     export default {
         name: 'Button',
