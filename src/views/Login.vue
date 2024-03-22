@@ -14,7 +14,7 @@
 </template>
   
 
-  <script>
+  <script lang="ts">
   import { ref } from 'vue';
   import { userStore } from '@/stores/userStore'; // Uso uno Store specifico per gli utenti
   import  Button  from '@/components/Button.vue';
