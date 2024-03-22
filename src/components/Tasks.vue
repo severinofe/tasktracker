@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import { tasksStore } from '@/stores/tasksStore.ts';
     import Task from './Task.vue'
 
