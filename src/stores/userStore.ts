@@ -7,15 +7,23 @@ export const userStore = defineStore({
    
   }),
   actions: {
-    login() {
+    login(email: string, password: string) {
+      // Controllo sul formato dell'email
+      const emailRegex  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailValida = emailRegex.test(email);
 
+      // Controllo sulla forza della password (esempio: lunghezza minima 8 caratteri)
+      const passwordValida = password.length >= 8;
 
-      console.log('sei nello userStore', this.loggato);
-      
-        
+      // Verifica sia email che password
+      if (emailValida && passwordValida) {
         this.loggato = true;
-    
-   //   }
+        console.log('sei nello userStore', 'loggato: ' + this.loggato, 'email: ' + email, 'password: ' + password);
+      } else {
+        if(!emailValida)
+        console.error('Email non valida');
+      else console.error('Password non valida');
+      }
     },
     logout() {
       this.loggato = false;

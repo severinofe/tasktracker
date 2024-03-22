@@ -8,7 +8,7 @@
       <div class="form-control">
         <input v-model="password" type="password" placeholder="Password" required>
       </div>
-      <Button @btn-click="accedi" type="submit" :text="'Login'" class="btn btn-block"></Button>
+      <Button @btn-click="login" type="submit" :text="'Login'" class="btn btn-block"></Button>
     </form>
   </div>
 </template>
@@ -18,6 +18,8 @@
   import { ref } from 'vue';
   import { userStore } from '@/stores/userStore'; // Uso uno Store specifico per gli utenti
   import  Button  from '@/components/Button.vue';
+  import { useRouter } from 'vue-router'; // Importa useRouter per l'uso del router
+
   
   export default {
     name: 'Login',
@@ -27,21 +29,20 @@
     },
 
     methods: {
-      accedi() {
-        console.log('clickclickclick');
-        const store = userStore();
-        store.login();
-        this.$router.push('/home')
-      }
+      
     },
 
     setup() {
       const email = ref('');
       const password = ref('');
       const store = userStore();
+      const router = useRouter()
   
       const login = () => {
+
+        
         store.login(email.value, password.value);
+        router.push('/home')
       };
   
       return {
