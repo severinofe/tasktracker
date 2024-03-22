@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { tasksStore } from '@/stores/tasksStore.ts';
