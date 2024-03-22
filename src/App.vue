@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts">
-import Header from './components/Header'
-import Footer from './components/Footer'
-import { tasksStore } from '@/stores/tasksStore.ts';
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+import { tasksStore } from '@/stores/tasksStore';
 export default {
   name: 'App',
   components: {
@@ -26,8 +26,10 @@ export default {
   },
   methods: {
     toggleAddTask() {
-      tasksStore.toggleAddTask();
-      console.log(tasksStore.showAddTask)
+
+      const store = tasksStore();
+      store.toggleAddTask();
+      console.log(store.showAddTask)
     },
   },
 }

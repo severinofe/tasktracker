@@ -1,55 +1,60 @@
 <template>
     <header>
-        <h1>{{title}}</h1>
-        <Button 
+      <h1>{{ title }}</h1>
+      <Button 
         v-show="homepage"
         @click="toggleAddTask"
-        :text="showAddTask? 'Chiudi' : 'Aggiungi task'" 
-        :color= "showAddTask? 'red' : 'green'"/>
+        :text="showAddTask ? 'Chiudi' : 'Aggiungi task'" 
+        :color="showAddTask ? 'red' : 'green'"
+      />
     </header>
-</template>
-
-<script lang="ts">
-import Button from "./Button"
-import { tasksStore } from '@/stores/tasksStore.ts';
-export default {
+  </template>
+  
+  <script lang="ts">
+  import { defineComponent, computed } from 'vue';
+  import { useRoute } from 'vue-router';
+  import Button from "./Button.vue";
+  import { tasksStore } from '@/stores/tasksStore'; // Assumendo che useTasksStore sia il tuo "useStore"
+  
+  export default defineComponent({
     name: 'AppHeader',
-    props: {
-        title :{
-            type: String,
-            default: "Task Tracker"
-        },
-       // showAddTask: Boolean 
-    },
     components: {
-        Button
+      Button
     },
-    computed: {
-        showAddTask() {
-            const store = tasksStore(); // Accedi allo store Pinia
-            return store.showAddTask; // Restituisci lo stato showAddTask
-        },
-        homepage() {
-            if(this.$route.path === '/') {
-                return true
-            } else return false
-        }
+    props: {
+      title: {
+        type: String,
+        default: "Task Tracker"
+      }
     },
-    methods: {
-        toggleAddTask() {
+    setup(props) {
+      const route = useRoute();
       const store = tasksStore();
-      store.toggleAddTask();
-    },
+  
+      const showAddTask = computed(() => store.showAddTask);
+      const homepage = computed(() => route.path === '/');
+  
+      const toggleAddTask = () => {
+        store.toggleAddTask();
+      };
+  
+      return { 
+        showAddTask, 
+        homepage, 
+        toggleAddTask,
+        // Distruggi props per renderle reattive e utilizzabili nel template
+        ...props
+      };
     }
-
-}
-</script>
-
-<style scoped>
-    header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-</style>
+  });
+  </script>
+  
+  <style scoped>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  </style>
+  

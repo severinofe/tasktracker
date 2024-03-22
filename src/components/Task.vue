@@ -1,30 +1,44 @@
 <template>
-    <div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.reminder ? 'reminder' : '' , 'task']">
-        <h3>{{ task.text }}
-        <i @click="$emit('delete-task',task.id)" class="fas fa-times"></i>
-        </h3>
-        <p>{{ task.day }}</p>
-    </div>
-    
+  <div @dblclick="toggleReminder" :class="[task.reminder ? 'reminder' : '', 'task']">
+    <h3>
+      {{ task.text }}
+      <i @click="deleteTask" class="fas fa-times"></i>
+    </h3>
+    <p>{{ task.day }}</p>
+  </div>
 </template>
 
 <script lang="ts">
+import { defineComponent, PropType } from 'vue';
+import { Task_i } from '@/interface/Task_i';
 
-    export default {
-       name: 'Task' ,
-       props: {
-        task: Object
-       },
-       methods:  {
-        onDelete(id) {
-            this.$emit('delete-task',id)
-        }
-       }
-    }
+export default defineComponent({
+  name: 'Task',
+  props: {
+    task: {
+      type: Object as PropType<Task_i>,
+      required: true,
+    },
+  },
+  setup(props, { emit }) {
+    const toggleReminder = () => {
+      emit('toggle-reminder', props.task.id);
+    };
 
+    const deleteTask = () => {
+      emit('delete-task', props.task.id);
+    };
+
+    // Non è necessario restituire le props, perché sono automaticamente accessibili nel template
+    return {
+      toggleReminder,
+      deleteTask,
+    };
+  },
+});
 </script>
 
-<style scope>
+<style scoped>
 .fas {
   color: red;
 }

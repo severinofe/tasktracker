@@ -27,7 +27,6 @@ export const userStore = defineStore({
     },
     logout() {
       this.loggato = false;
-
     },
   }
 });

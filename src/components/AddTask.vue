@@ -1,20 +1,15 @@
 <template>
-    <form @submit="onSubmit" class="add-form" >
+  <form @submit="onSubmit" class="add-form">
     <div class="form-control">
       <label>Task</label>
       <input type="text" v-model="text" name="text" placeholder="Aggiungi Task" />
     </div>
     <div class="form-control">
       <label>Data e Ora</label>
-      <input
-        type="text" 
-        v-model="day"
-        name="day"
-        placeholder="Aggiungi Data e Ora"
-      />
+      <input type="text" v-model="day" name="day" placeholder="Aggiungi Data e Ora" />
     </div>
     <div class="form-control form-control-check">
-      <label >Imposta Reminder</label>
+      <label>Imposta Reminder</label>
       <input type="checkbox" v-model="reminder" name="reminder" />
     </div>
 
@@ -23,44 +18,50 @@
 </template>
 
 <script lang="ts">
-import { tasksStore } from '@/stores/tasksStore.ts';
-export default {
-    name: 'AddTask',
-    data() {
-      return {
-        text: "",
-        day: "",
-        reminder: false
+import { defineComponent, ref } from 'vue';
+
+export default defineComponent({
+  name: 'AddTask',
+  setup(props, { emit }) {
+    const text = ref("");
+    const day = ref("");
+    const reminder = ref(false);
+
+    function onSubmit(e: Event) {
+      e.preventDefault();
+
+      if (!text.value) {
+        alert('Per favore, aggiungi un task');
+        return;
       }
-    },
-    methods:   {
-      onSubmit(e) {
-        e.preventDefault();
 
-        if(!this.text) {
-          alert('Per favore, aggiungi un task')
-        }
+      const newTask = {
+        text: text.value,
+        day: day.value,
+        reminder: reminder.value,
+      };
 
-        const newTask =  {
-        
-          text: this.text,
-          day: this.day,
-          reminder: this.reminder
-        }
+      console.log(newTask);
+      emit('add-task', newTask);
 
-        console.log (newTask)
-        this.$emit('add-task', newTask)
-        this.text= ''
-        this.day= ''
-        this.reminder= false
+      text.value = '';
+      day.value = '';
+      reminder.value = false;
+    }
 
-      }
-    },
-    emits: ['add-task']
-}
+    return {
+      text,
+      day,
+      reminder,
+      onSubmit,
+    };
+  },
+  emits: ['add-task']
+});
 </script>
 
 <style scoped>
+/* Stili rimangono invariati */
 .add-form {
   margin-bottom: 40px;
 }
