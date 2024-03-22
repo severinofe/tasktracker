@@ -9,7 +9,7 @@
     </header>
 </template>
 
-<script>
+<script lang="ts">
 import Button from "./Button"
 import { tasksStore } from '@/stores/tasksStore.ts';
 export default {
