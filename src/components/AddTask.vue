@@ -22,7 +22,7 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import { tasksStore } from '@/stores/tasksStore.ts';
 export default {
     name: 'AddTask',
